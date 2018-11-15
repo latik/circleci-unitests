@@ -30,7 +30,7 @@ jobs:
               $EXTRA_ARGS
 
   build_and_test:
-    working_directory: /var/www/html
+    working_directory: /home/webapps/htdocs/app
     docker:
       - image: youseeu/docker-php-node
       - image: mysql:5.6
