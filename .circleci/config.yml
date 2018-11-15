@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build_and_test:
-    working_directory: ~/bongo
+    working_directory: /var/www/html
     docker:
       - image: youseeu/docker-php-node
       - image: mysql:5.6
@@ -44,13 +44,8 @@ jobs:
       - run:
           name: Run Unit tests
           command: |
-            mkdir -p ~/phpunit
-            vendor/bin/simple-phpunit --log-junit ~/phpunit/junit.xml
+            vendor/bin/simple-phpunit
           when: always
-      - store_test_results:
-          path: ~/phpunit
-      - store_artifacts:
-          path: ~/phpunit
 
 workflows:
   version: 2
