@@ -46,7 +46,7 @@ jobs:
           command: |
             mkdir -p ~/phpunit
             vendor/bin/simple-phpunit --log-junit ~/phpunit/junit.xml
-            when: always
+          when: always
       - store_test_results:
           path: ~/phpunit
       - store_artifacts:
