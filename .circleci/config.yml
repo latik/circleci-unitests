@@ -49,6 +49,6 @@ jobs:
 
 workflows:
   version: 2
-  quality:
+  test:
     jobs:
       - build_and_test
