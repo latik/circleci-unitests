@@ -1,0 +1,54 @@
+version: 2
+jobs:
+  build_and_test:
+    working_directory: ~/bongo
+    docker:
+      - image: youseeu/docker-php-node
+      - image: mysql:5.6
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+    steps:
+      # Installation
+      - run:
+          name: Install Composer
+          command: |
+            php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+            php -r "if (hash_file('SHA384', 'composer-setup.php') === trim(file_get_contents('https://composer.github.io/installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer invalid'; unlink('composer-setup.php'); } echo PHP_EOL;"
+            php composer-setup.php && \
+            php -r "unlink('composer-setup.php');" && \
+            chmod +x ./composer.phar && \
+            mv ./composer.phar /usr/local/bin/composer
+
+      # Dependencies
+      - checkout
+      - restore_cache:
+          key: bongo-{{ .Branch }}-{{ checksum "./composer.lock" }}-v1
+      - run: composer install --prefer-dist --no-interaction
+      - save_cache:
+          key: bongo-{{ .Branch }}-{{ checksum "./composer.lock" }}-v1
+          paths:
+            - '/root/.composer/cache'
+            - './vendor'
+
+      # Database
+      - run: ./bin/console doctrine:database:create --env=test
+      - run: ./bin/console doctrine:schema:create --env=test
+      - run: ./bin/console hautelook_alice:doctrine:fixtures:load --no-interaction
+
+      # Testing
+      - run:
+          name: Run Unit tests
+          command: |
+            mkdir -p ~/phpunit
+            vendor/bin/phpunit -c app --log-junit ~/phpunit/junit.xml --testsuite unit
+            when: always
+      - store_test_results:
+          path: ~/phpunit
+      - store_artifacts:
+          path: ~/phpunit
+
+workflows:
+  version: 2
+  quality:
+    jobs:
+      - build_and_test
