@@ -10,6 +10,9 @@ jobs:
     steps:
       # Installation
       - run:
+          name: Install System Packages
+          command: apt-get -y install php7.0-zip
+      - run:
           name: Install Composer
           command: |
             php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
@@ -24,6 +27,8 @@ jobs:
       - restore_cache:
           key: bongo-{{ .Branch }}-{{ checksum "./composer.lock" }}-v1
       - run: composer install --prefer-dist --no-interaction
+      # Force pulling Simple PHPUnit dependencies to be able to cache them as well
+      - run: ./vendor/bin/simple-phpunit --version
       - save_cache:
           key: bongo-{{ .Branch }}-{{ checksum "./composer.lock" }}-v1
           paths:
@@ -33,14 +38,14 @@ jobs:
       # Database
       - run: ./bin/console doctrine:database:create --env=test
       - run: ./bin/console doctrine:schema:create --env=test
-      - run: ./bin/console doctrine:fixtures:load --append --no-interaction
+#      - run: ./bin/console doctrine:fixtures:load --append --no-interaction
 
       # Testing
       - run:
           name: Run Unit tests
           command: |
             mkdir -p ~/phpunit
-            vendor/bin/phpunit -c app --log-junit ~/phpunit/junit.xml --testsuite unit
+            vendor/bin/simple-phpunit --log-junit ~/phpunit/junit.xml
             when: always
       - store_test_results:
           path: ~/phpunit
