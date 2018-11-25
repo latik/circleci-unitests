@@ -35,6 +35,12 @@ jobs:
             - '/root/.composer/cache'
             - './vendor'
 
+      # Code style checks
+      - run:
+          name: php-cs-fixer
+          command: |
+            PHP_CS_FIXER_FUTURE_MODE=1 composer cs-fix
+
       # Database
       - run: ./bin/console doctrine:database:create --env=test
       - run: ./bin/console doctrine:schema:create --env=test
