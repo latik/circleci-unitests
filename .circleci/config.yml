@@ -29,9 +29,9 @@ jobs:
 
       # Code style checks
       - run:
-          name: php-cs-fixer
+          name: Code style checks
           command: |
-            PHP_CS_FIXER_FUTURE_MODE=1 composer cs-fix
+            PHP_CS_FIXER_FUTURE_MODE=1 vendor/bin/php-cs-fixer --config=.php_cs.dist --verbose --diff --dry-run fix
 
       # Testing
       - run:
