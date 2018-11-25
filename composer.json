@@ -14,7 +14,7 @@
         "files": [ "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php" ]
     },
     "require": {
-        "php": ">=5.5.9",
+        "php": "^7.0",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
         "incenteev/composer-parameter-handler": "^2.0",
@@ -29,8 +29,9 @@
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.0",
         "friendsofphp/php-cs-fixer": "^2.13",
+        "phpunit/phpunit": "^6.0",
         "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^3.0"
+        "symfony/phpunit-bridge": "^4.1"
     },
     "scripts": {
         "symfony-scripts": [
@@ -50,9 +51,6 @@
         "cs-fix": "php-cs-fixer --config=.php_cs.dist --verbose --diff fix"
     },
     "config": {
-        "platform": {
-            "php": "5.6"
-        },
         "sort-packages": true
     },
     "extra": {
