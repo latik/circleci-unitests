@@ -4,9 +4,6 @@ jobs:
     working_directory: ~/bongo
     docker:
       - image: youseeu/docker-php-node
-      - image: mysql:5.6
-        environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
     steps:
       # Installation
       - run:
@@ -35,11 +32,6 @@ jobs:
           name: php-cs-fixer
           command: |
             PHP_CS_FIXER_FUTURE_MODE=1 composer cs-fix
-
-      # Database
-      - run: ./bin/console doctrine:database:create --env=test
-      - run: ./bin/console doctrine:schema:create --env=test
-      #- run: ./bin/console doctrine:fixtures:load --append --no-interaction
 
       # Testing
       - run:
