@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * User
+ * User.
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
@@ -35,9 +35,8 @@ class User
      */
     private $email;
 
-
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -47,7 +46,7 @@ class User
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -61,7 +60,7 @@ class User
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -71,7 +70,7 @@ class User
     }
 
     /**
-     * Set email
+     * Set email.
      *
      * @param string $email
      *
@@ -85,7 +84,7 @@ class User
     }
 
     /**
-     * Get email
+     * Get email.
      *
      * @return string
      */
@@ -94,4 +93,3 @@ class User
         return $this->email;
     }
 }
-
