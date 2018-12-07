@@ -39,7 +39,6 @@ jobs:
       # Database
       - run: ./bin/console doctrine:database:create --env=test
       - run: ./bin/console doctrine:schema:create --env=test
-      - run: ./bin/console doctrine:fixtures:load --append --no-interaction
 
       # Testing
       - run:

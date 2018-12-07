@@ -2,12 +2,17 @@
 
 namespace Tests\AppBundle\Controller;
 
+use AppBundle\DataFixtures\AppFixture;
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
     public function testIndex()
     {
+        $this->loadFixtures([
+            AppFixture::class,
+        ]);
+
         $client = $this->makeClient();
 
         $crawler = $client->request('GET', '/');
