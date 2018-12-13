@@ -15,4 +15,18 @@ class DefaultControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertContains('Welcome to Symfony', $crawler->filter('#container h1')->text());
     }
+
+    public function testSkip()
+    {
+        static::markTestSkipped();
+
+        $this->assertTrue(false);
+    }
+
+    public function testIncomplete()
+    {
+        static::markTestIncomplete();
+
+        $this->assertTrue(false);
+    }
 }
