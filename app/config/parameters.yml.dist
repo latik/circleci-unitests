@@ -10,7 +10,7 @@ parameters:
     # You should uncomment this if you want to use pdo_sqlite
     #database_path: '%kernel.project_dir%/var/data/data.sqlite'
 
-    mongodb_server: "mongodb://localhost:27017"
+    mongodb_server: "mongodb://admin:admin@localhost:27017"
 
     mailer_transport: smtp
     mailer_host: 127.0.0.1

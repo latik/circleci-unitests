@@ -6,8 +6,8 @@ jobs:
       - image: youseeu/docker-php-node
       - image: mongo:3.2
         environment:
-            MONGO_INITDB_ROOT_USERNAME: admin
-            MONGO_INITDB_ROOT_PASSWORD: admin
+          MONGO_INITDB_ROOT_USERNAME: admin
+          MONGO_INITDB_ROOT_PASSWORD: admin
       - image: mysql:5.6
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
