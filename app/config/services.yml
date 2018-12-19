@@ -39,7 +39,3 @@ services:
 
     AppBundle\Repository\ProductRepository:
         public: true
-        autowire: false
-        factory: ["@doctrine_mongodb", getRepository]
-        arguments:
-            - App\Document\Product
