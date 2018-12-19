@@ -25,7 +25,7 @@ class Product
     protected $price;
 
     /**
-     * Get id
+     * Get id.
      *
      * @return id $id
      */
@@ -35,19 +35,21 @@ class Product
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string $name
      */
@@ -57,19 +59,21 @@ class Product
     }
 
     /**
-     * Set price
+     * Set price.
      *
      * @param float $price
+     *
      * @return $this
      */
     public function setPrice($price)
     {
         $this->price = $price;
+
         return $this;
     }
 
     /**
-     * Get price
+     * Get price.
      *
      * @return float $price
      */
