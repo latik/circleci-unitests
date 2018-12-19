@@ -3,12 +3,17 @@
 namespace Tests\AppBundle\Controller;
 
 use AppBundle\DataFixtures\AppFixture;
+use AppBundle\Document\Product;
+use AppBundle\Repository\ProductRepository;
 use AppBundle\Repository\UserRepository;
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
 {
-    public function testIndex()
+    /**
+     * @test
+     */
+    public function indexAction()
     {
         $client = $this->makeClient();
 
@@ -19,7 +24,10 @@ class DefaultControllerTest extends WebTestCase
         $this->assertContains('Welcome to Symfony', $crawler->filter('#container h1')->text());
     }
 
-    public function testFixtures()
+    /**
+     * @test
+     */
+    public function fixtures()
     {
         $this->loadFixtures([
             AppFixture::class,
@@ -30,17 +38,43 @@ class DefaultControllerTest extends WebTestCase
         $this->assertCount(19, $userRepo->findAll());
     }
 
-    public function testSkip()
+    /**
+     * @test
+     */
+    public function skip()
     {
         static::markTestSkipped();
 
         $this->assertTrue(false);
     }
 
-    public function testIncomplete()
+    /**
+     * @test
+     */
+    public function incomplete()
     {
         static::markTestIncomplete();
 
         $this->assertTrue(false);
+    }
+
+    /**
+     * @test
+     */
+    public function mongoDocumentCreate()
+    {
+        $product = new Product();
+        $product->setName('A Foo Bar');
+        $product->setPrice('19.99');
+
+        $dm = $this->getContainer()->get('doctrine_mongodb')->getManager();
+        $dm->persist($product);
+        $dm->flush();
+
+        $productRepository = $this->getContainer()->get('doctrine_mongodb')->getRepository(Product::class);
+        $this->assertCount(1, $productRepository->findAll());
+
+        $productRepositoryDirect = $this->getContainer()->get(ProductRepository::class);
+        $this->assertCount(1, $productRepositoryDirect->findAll());
     }
 }
