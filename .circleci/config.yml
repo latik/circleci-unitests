@@ -36,6 +36,9 @@ jobs:
           command: |
             PHP_CS_FIXER_FUTURE_MODE=1 vendor/bin/php-cs-fixer --config=.php_cs.dist --verbose --diff --dry-run fix
 
+      # Warmup cache for test
+      - run: ./bin/console cache:warmup --env=test
+
       # Database
       - run: ./bin/console doctrine:database:create --env=test
       - run: ./bin/console doctrine:schema:create --env=test
