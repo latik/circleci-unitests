@@ -3,6 +3,7 @@
 namespace Tests\AppBundle\Controller;
 
 use AppBundle\DataFixtures\AppFixture;
+use AppBundle\DataFixtures\DocumentData;
 use AppBundle\Document\Product;
 use AppBundle\Repository\ProductRepository;
 use AppBundle\Repository\UserRepository;
@@ -63,6 +64,8 @@ class DefaultControllerTest extends WebTestCase
      */
     public function mongoDocumentCreate()
     {
+        $this->loadFixtures([], null, 'doctrine_mongodb');
+
         $product = new Product();
         $product->setName('A Foo Bar');
         $product->setPrice('19.99');
@@ -76,5 +79,19 @@ class DefaultControllerTest extends WebTestCase
 
         $productRepositoryDirect = $this->getContainer()->get(ProductRepository::class);
         $this->assertCount(1, $productRepositoryDirect->findAll());
+    }
+
+    /**
+     * @test
+     */
+    public function mongoDocumentFixtures()
+    {
+        static::markTestIncomplete();
+
+        $fixtures = [
+            DocumentData::class,
+        ];
+
+        $this->loadFixtures($fixtures, null, 'doctrine_mongodb');
     }
 }
