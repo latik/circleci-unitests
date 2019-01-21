@@ -31,7 +31,7 @@ jobs:
       - run:
           name: Code style checks
           command: |
-            PHP_CS_FIXER_FUTURE_MODE=1 vendor/bin/php-cs-fixer --config=.php_cs.dist --verbose --diff --dry-run fix
+            vendor/bin/ecs check src
 
       # Testing
       - run:
