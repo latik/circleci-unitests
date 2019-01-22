@@ -33,6 +33,12 @@ jobs:
           command: |
             PHP_CS_FIXER_FUTURE_MODE=1 vendor/bin/php-cs-fixer --config=.php_cs.dist --verbose --diff --dry-run fix
 
+      # static analysis
+      - run:
+          name: Psalm static analysis
+          command: |
+            vendor/bin/psalm --show-info=false src tests
+
       # Testing
       - run:
           name: Run Unit tests
