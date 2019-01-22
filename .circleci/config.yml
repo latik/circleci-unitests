@@ -51,6 +51,12 @@ jobs:
       - store_artifacts:
           path: ~/phpunit
 
+      # Infection
+      - run:
+          name: Run Infection
+          command: |
+            vendor/bin/infection --min-msi=48 --min-covered-msi=70
+
 workflows:
   version: 2
   tests:
