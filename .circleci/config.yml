@@ -39,6 +39,11 @@ jobs:
           command: |
             vendor/bin/psalm --show-info=false src tests
 
+      - run:
+          name: Phpstan static analysis
+          command: |
+            docker run --rm -v $PWD:/app phpstan/phpstan analyse /app/src
+
       # Testing
       - run:
           name: Run Unit tests
