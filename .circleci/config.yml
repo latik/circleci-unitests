@@ -55,7 +55,7 @@ jobs:
       - run:
           name: Run Infection
           command: |
-            vendor/bin/infection
+            vendor/bin/infection --min-msi=48 --min-covered-msi=70
 
 workflows:
   version: 2
