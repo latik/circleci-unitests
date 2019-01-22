@@ -51,6 +51,12 @@ jobs:
       - store_artifacts:
           path: ~/phpunit
 
+      # Infection
+      - run:
+          name: Run Infection
+          command: |
+            vendor/bin/infection
+
 workflows:
   version: 2
   tests:
