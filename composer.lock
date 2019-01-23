@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bd5e5c898c2a293c9495271f236ea538",
+    "content-hash": "b66538b5f079dc8cf2aa7c4ab2eafba7",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -2322,6 +2322,109 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "brianium/habitat",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brianium/habitat.git",
+                "reference": "d0979e3bb379cbc78ecb42b3ac171bc2b7e06d96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brianium/habitat/zipball/d0979e3bb379cbc78ecb42b3ac171bc2b7e06d96",
+                "reference": "d0979e3bb379cbc78ecb42b3ac171bc2b7e06d96",
+                "shasum": ""
+            },
+            "require-dev": {
+                "monolog/monolog": ">=1.5.0",
+                "phpunit/phpunit": ">=3.7.21"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Habitat": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian",
+                    "email": "scaturrob@gmail.com",
+                    "homepage": "http://brianscaturro.com",
+                    "role": "Lead"
+                }
+            ],
+            "description": "A dependable php environment",
+            "time": "2013-06-08T04:42:29+00:00"
+        },
+        {
+            "name": "brianium/paratest",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paratestphp/paratest.git",
+                "reference": "30f01dff874f9a5dd0b0651bca6384888030d47b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/30f01dff874f9a5dd0b0651bca6384888030d47b",
+                "reference": "30f01dff874f9a5dd0b0651bca6384888030d47b",
+                "shasum": ""
+            },
+            "require": {
+                "brianium/habitat": "1.0.0",
+                "composer/semver": "~1.2",
+                "ext-pcre": "*",
+                "ext-reflection": "*",
+                "ext-simplexml": "*",
+                "php": ">=7.0",
+                "phpunit/php-timer": "^1.0.4",
+                "phpunit/phpunit": "^6.0.13",
+                "symfony/console": "^3.4|^4.0",
+                "symfony/process": "^3.4|^4.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.3.2"
+            },
+            "bin": [
+                "bin/paratest"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ParaTest\\": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Scaturro",
+                    "email": "scaturrob@gmail.com",
+                    "homepage": "http://brianscaturro.com",
+                    "role": "Lead"
+                }
+            ],
+            "description": "Parallel testing for PHP",
+            "homepage": "https://github.com/brianium/paratest",
+            "keywords": [
+                "concurrent",
+                "parallel",
+                "phpunit",
+                "testing"
+            ],
+            "time": "2018-01-18T12:09:16+00:00"
+        },
         {
             "name": "composer/semver",
             "version": "1.4.2",
